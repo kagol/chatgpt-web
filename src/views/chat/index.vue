@@ -4,6 +4,11 @@ import { computed, onMounted, onUnmounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { storeToRefs } from 'pinia'
 import { NAutoComplete, NButton, NInput, useDialog, useMessage } from 'naive-ui'
+import {
+  Button as TinyButton,
+  Link as TinyLink,
+  Modal as TinyModal,
+} from '@opentiny/vue'
 import html2canvas from 'html2canvas'
 import { Message } from './components'
 import { useScroll } from './hooks/useScroll'
@@ -451,6 +456,12 @@ const footerClass = computed(() => {
   return classes
 })
 
+const modalVisible = ref(false)
+
+const openModal = () => {
+  modalVisible.value = true
+}
+
 onMounted(() => {
   scrollToBottom()
   if (inputRef.value && !isMobile.value)
@@ -502,7 +513,7 @@ onUnmounted(() => {
                   <template #icon>
                     <SvgIcon icon="ri:stop-circle-line" />
                   </template>
-									{{ t('common.stopResponding') }}
+                  {{ t('common.stopResponding') }}
                 </NButton>
               </div>
             </div>
@@ -513,6 +524,31 @@ onUnmounted(() => {
     <footer :class="footerClass">
       <div class="w-full max-w-screen-xl m-auto">
         <div class="flex items-center justify-between space-x-2">
+          <TinyButton class="!w-28" type="primary" @click="openModal">
+            OpenTiny
+          </TinyButton>
+          <TinyModal v-model="modalVisible" title="OpenTiny 简介" show-footer>
+            <template #default>
+              <div class="tiny-modal__text !text-sm">
+                <p>OpenTiny 是一套华为云出品的企业级组件库解决方案，适配 PC 端 / 移动端等多端，涵盖 Vue2 / Vue3 / Angular 多技术栈，拥有主题配置系统 / 中后台模板 / CLI 命令行等效率提升工具，可帮助开发者高效开发 Web 应用。</p>
+                <p class="mt-4">
+                  官网：<TinyLink href="https://opentiny.design" target="_blank">
+                    https://opentiny.design
+                  </TinyLink>
+                </p>
+                <p>
+                  GitHub：<TinyLink href="https://github.com/opentiny/vue" target="_blank">
+                    https://github.com/opentiny/vue
+                  </TinyLink>
+                </p>
+              </div>
+            </template>
+            <template #footer>
+              <TinyButton type="primary" @click="modalVisible = false">
+                知道了
+              </TinyButton>
+            </template>
+          </TinyModal>
           <HoverButton @click="handleClear">
             <span class="text-xl text-[#4f555e] dark:text-white">
               <SvgIcon icon="ri:delete-bin-line" />

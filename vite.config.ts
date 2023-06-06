@@ -50,5 +50,8 @@ export default defineConfig((env) => {
         ignoreTryCatch: false,
       },
     },
+    define: {
+      'process.env': { ...process.env },
+    },
   }
 })
