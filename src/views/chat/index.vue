@@ -6,6 +6,7 @@ import { storeToRefs } from 'pinia'
 import { NAutoComplete, NButton, NInput, useDialog, useMessage } from 'naive-ui'
 import {
   Button as TinyButton,
+  Input as TinyInput,
   Link as TinyLink,
   Modal as TinyModal,
 } from '@opentiny/vue'
@@ -564,7 +565,7 @@ onUnmounted(() => {
               <SvgIcon icon="ri:chat-history-line" />
             </span>
           </HoverButton>
-          <NAutoComplete v-model:value="prompt" :options="searchOptions" :render-label="renderOption">
+          <NAutoComplete v-if="false" v-model:value="prompt" :options="searchOptions" :render-label="renderOption">
             <template #default="{ handleInput, handleBlur, handleFocus }">
               <NInput
                 ref="inputRef"
@@ -579,6 +580,14 @@ onUnmounted(() => {
               />
             </template>
           </NAutoComplete>
+          <TinyInput
+            ref="inputRef"
+            v-model="prompt"
+            type="textarea"
+            :placeholder="placeholder"
+            :autosize="{ minRows: 1, maxRows: isMobile ? 4 : 8 }"
+            @keypress="handleEnter"
+          />
           <NButton type="primary" :disabled="buttonDisabled" @click="handleSubmit">
             <template #icon>
               <span class="dark:text-black">
