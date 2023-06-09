@@ -588,13 +588,16 @@ onUnmounted(() => {
             :autosize="{ minRows: 1, maxRows: isMobile ? 4 : 8 }"
             @keypress="handleEnter"
           />
-          <NButton type="primary" :disabled="buttonDisabled" @click="handleSubmit">
+          <NButton v-if="false" type="primary" :disabled="buttonDisabled" @click="handleSubmit">
             <template #icon>
               <span class="dark:text-black">
                 <SvgIcon icon="ri:send-plane-fill" />
               </span>
             </template>
           </NButton>
+          <TinyButton @click="handleSubmit">
+            发送
+          </TinyButton>
         </div>
       </div>
     </footer>
