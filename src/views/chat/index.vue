@@ -586,7 +586,6 @@ onUnmounted(() => {
             type="textarea"
             :placeholder="placeholder"
             :rows="4"
-            @keypress="handleEnter"
           />
           <NButton v-if="false" type="primary" :disabled="buttonDisabled" @click="handleSubmit">
             <template #icon>
@@ -595,7 +594,7 @@ onUnmounted(() => {
               </span>
             </template>
           </NButton>
-          <TinyButton type="success" @click="handleSubmit">
+          <TinyButton type="success" size="small" @click="handleSubmit">
             发送
           </TinyButton>
         </div>
