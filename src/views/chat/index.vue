@@ -594,7 +594,7 @@ onUnmounted(() => {
               </span>
             </template>
           </NButton>
-          <TinyButton type="success" size="small" @click="handleSubmit">
+          <TinyButton type="danger" size="small" @click="handleSubmit">
             发送
           </TinyButton>
         </div>
