@@ -585,7 +585,7 @@ onUnmounted(() => {
             v-model="prompt"
             type="textarea"
             :placeholder="placeholder"
-            :autosize="{ minRows: 1, maxRows: isMobile ? 4 : 8 }"
+            :rows="4"
             @keypress="handleEnter"
           />
           <NButton v-if="false" type="primary" :disabled="buttonDisabled" @click="handleSubmit">
